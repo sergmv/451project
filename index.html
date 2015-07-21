@@ -68,7 +68,7 @@
 
                 this.bindEvents = function () {
                     alert('Cordova found, wating for device. 9');
-                    document.addEventListener('deviceready', onDeviceReady, false);
+                    document.addEventListener('deviceready', onDeviceReady, true);
                 };
 
                 //If cordova is present, wait for it to initialize, otherwise just try to
