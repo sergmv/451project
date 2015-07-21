@@ -53,22 +53,29 @@
         <script src="js/controllers/loadingCtrl.js"></script>
         
         <script>
-            alert("set timeout");
+            alert("run app, set timout");
 
             window.setTimeout(function () { //failsafe
-                alert("on load run");
-                onLoad();
+                alert("add events");
+                onTimeOut();
             }, 5000); //5 seconds
+
+            function onTimeOut() {
+                alert("Init angular app onTimeOut");
+                initAngularApp();
+            }
 
             function onLoad() {
                 alert("add DEVICE ready events");
-                window.location.reload();
-                
+                document.addEventListener("deviceready", onDeviceReadyFalse, false);
+                document.addEventListener("deviceready", onDeviceReadyTrue, true);
+                //window.location.reload();
+
+
             }
 
 
-            document.addEventListener("deviceready", onDeviceReadyFalse, false);
-            document.addEventListener("deviceready", onDeviceReadyTrue, true);
+            
             
             var isInited = false;
 
@@ -102,7 +109,7 @@
 
     </head>
     
-    <body>
+    <body onload="onLoad()">
         
 
         <div id="slideView" ng-view ng-class="slideDir" > </div>
