@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-screen-orientation"
+    version="1.3.6">
+
+  <name>Screen Orientation</name>
+  <description>Adds Screen Orientation API lock and unlock functions to the global screen object in android, iOS, WP8 and BB10.</description>
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+
+  <js-module src="www/screenorientation.js" name="screenorientation">
+    <clobbers target="cordova.plugins.screenorientation" />
+  </js-module>
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="EmailComposer">
+        <param name="ios-package" value="APPEmailComposer"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/APPEmailComposer.h" />
+    <source-file src="src/ios/APPEmailComposer.m" />
+
+    <framework src="MessageUI.framework" weak="true" />
+  </platform>
+
+
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="YoikScreenOrientation">
+        <param name="ios-package" value="YoikScreenOrientation" />
+      </feature>
+    </config-file>
+    <js-module src="www/screenorientation.ios.js" name="screenorientation.ios">
+      <merges target="cordova.plugins.screenorientation" />
+    </js-module>
+    <header-file src="src/ios/YoikScreenOrientation.h" />
+    <source-file src="src/ios/YoikScreenOrientation.m" />
+  </platform>
+
+  <platform name="ios">
+    <js-module src="www/inappbrowser.js" name="inappbrowser">
+      <clobbers target="cordova.InAppBrowser.open" />
+      <clobbers target="window.open" />
+    </js-module>
+    <config-file target="config.xml" parent="/*">
+      <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/CDVInAppBrowser.h" />
+    <source-file src="src/ios/CDVInAppBrowser.m" />
+
+    <framework src="CoreGraphics.framework" />
+  </platform>
+
+
+  <platform name="android">
+    <source-file src="src/android/YoikScreenOrientation.java" target-dir="src/net/yoik/cordova/plugins/screenorientation/" />
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="YoikScreenOrientation">
+        <param name="android-package" value="net.yoik.cordova.plugins.screenorientation.YoikScreenOrientation" />
+      </feature>
+      <feature name="SamplePlugin">
+ 
+        <!--new plugin-->
+        
+            <param name="android-package" value="com.usefulio.plugin.SamplePlugin"/>
+          </feature>
+        </config-file>
+
+    
+        <!--new plugin source-file -->
+
+        <source-file src="src/android/com/usefulio/plugin/SamplePlugin.java" target-dir="src/com/usefulio/plugin" />
+
+        <js-module src="www/screenorientation.android.js" name="screenorientation.android">
+          <merges target="cordova.plugins.screenorientation" />
+        </js-module>
+      </platform>
+
+  <platform name="blackberry10">
+    <dependency id="com.blackberry.app" />
+    <config-file target="www/config.xml" parent="/widget">
+      <feature name="net.yoik.cordova.plugins.screenorientation" value="net.yoik.cordova.plugins.screenorientation" />
+    </config-file>
+    <js-module src="www/screenorientation.bb10.js" name="screenorientation.bb10">
+      <merges target="cordova.plugins.screenorientation" />
+    </js-module>
+  </platform>
+
+  <platform name="wp8">
+    <config-file target="config.xml" parent="/*">
+      <feature name="YoikScreenOrientation">
+        <param name="wp-package" value="YoikScreenOrientation"/>
+      </feature>
+    </config-file>
+    <js-module src="www/screenorientation.wp8.js" name="screenorientation.wp8">
+      <merges target="cordova.plugins.screenorientation" />
+    </js-module>
+    <source-file src="src/wp/YoikScreenOrientation.cs" />
+  </platform>
+
+</plugin>
