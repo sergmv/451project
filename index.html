@@ -149,8 +149,26 @@
     </body>
     
     <script>
-        // This is a function that bootstraps AngularJS, which is called from later code
-        function bootstrapAngular() {
+        $(document).ready(function () {
+            // are we running in native app or in a browser?
+            window.isphone = false;
+            if (document.URL.indexOf("http://") === -1
+                && document.URL.indexOf("https://") === -1) {
+                alert("isPhone");
+                window.isphone = true;
+            }
+
+            if (window.isphone) {
+                alert("isPhone 2");
+                document.addEventListener("deviceready", onDeviceReady, false);
+            } else {
+                alert("isPhone 3");
+                onDeviceReady();
+            }
+        });
+
+        function onDeviceReady() {
+            alert("isPhone 4");
             console.log("Bootstrapping AngularJS");
             // This assumes your app is named "app" and is on the body tag: <body ng-app="app">
             // Change the selector from "body" to whatever you need
@@ -158,18 +176,6 @@
             // Change the application name from "app" if needed
             angular.bootstrap(domElement, ['comix']);
         }
-
-        $(document).ready(function () {
-            // This is my preferred Cordova detection method, as it doesn't require updating.
-            if (document.URL.indexOf('http://') === -1
-                    && document.URL.indexOf('https://') === -1) {
-                console.log("URL: Running in Cordova/PhoneGap");
-                document.addEventListener("deviceready", bootstrapAngular, false);
-            } else {
-                console.log("URL: Running in browser");
-                bootstrapAngular();
-            }
-        });
         
     </script>
 </html>
