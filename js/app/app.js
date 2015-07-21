@@ -28,26 +28,7 @@
         .run(['$rootScope', '$http', '$location',
 
             function ($rootScope, $http, $location) {
-                $location.url("/loading");
-
-                window.isphone = false;
-                if (document.URL.indexOf("http://") === -1
-                    && document.URL.indexOf("https://") === -1) {
-                    alert("isPhone");
-                    window.isphone = true;
-                }
-
-                if (window.isphone) {
-                    alert("isPhone 2");
-                    document.addEventListener("deviceready", onDeviceReady, false);
-                } else {
-                    alert("isPhone 3");
-                    onDeviceReady();
-                }
-
-                function onDeviceReady() {
-                    alert("isPhone 4");
-                }
+                    $location.url("/loading");
             }
         ]);
 

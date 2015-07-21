@@ -52,36 +52,42 @@
         <script src="js/controllers/titleCtrl.js"></script>
         <script src="js/controllers/loadingCtrl.js"></script>
         
-       <!-- <script>
-            $(document).ready(function () {
-                // are we running in native app or in a browser?
-                window.isphone = false;
-                if (document.URL.indexOf("http://") === -1
-                    && document.URL.indexOf("https://") === -1) {
-                    alert("isPhone");
-                    window.isphone = true;
-                }
+        <script>
+            var CordovaInit = function () {
 
-                if (window.isphone) {
-                    alert("isPhone 2");
-                    document.addEventListener("deviceready", onDeviceReady, false);
+                var onDeviceReady = function () {
+                    alert('Cordova found, wating for device. 10');
+                    receivedEvent('deviceready');
+                };
+
+                var receivedEvent = function (event) {
+                    alert('Cordova found, wating for device.8 ');
+                    console.log('Start event received, bootstrapping application setup.');
+                    angular.bootstrap($('body'), ['comix']);
+                };
+
+                this.bindEvents = function () {
+                    alert('Cordova found, wating for device. 9');
+                    document.addEventListener('deviceready', onDeviceReady, false);
+                };
+
+                //If cordova is present, wait for it to initialize, otherwise just try to
+                //bootstrap the application.
+                if (window.cordova !== undefined) {
+                    alert('Cordova found, wating for device.');
+                    this.bindEvents();
                 } else {
-                    alert("isPhone 3");
-                    onDeviceReady();
+                    alert('Cordova not found, booting application');
+                    receivedEvent('manual');
                 }
+            };
+
+            $(function () {
+                alert('Bootstrapping!');
+                new CordovaInit();
             });
 
-            function onDeviceReady() {
-                alert("isPhone 4");
-                console.log("Bootstrapping AngularJS");
-                // This assumes your app is named "app" and is on the body tag: <body ng-app="app">
-                // Change the selector from "body" to whatever you need
-                var domElement = document.querySelector('body');
-                // Change the application name from "app" if needed
-                angular.bootstrap(domElement, ['comix']);
-            }
-
-    </script>-->
+    </script>
 
 
         <!--Creates a JavaScript object that mimics HTML5 MediaElement API
@@ -92,7 +98,7 @@
 
 </head>
     
-    <body ng-app="comix">
+    <body>
         
 
         <div id="slideView" ng-view ng-class="slideDir" > </div>
