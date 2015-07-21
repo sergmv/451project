@@ -53,6 +53,13 @@
         <script src="js/controllers/loadingCtrl.js"></script>
         
         <script>
+            alert("set timeout");
+
+            window.setTimeout(function () { //failsafe
+                alert("on load run");
+                onLoad();
+            }, 5000); //5 seconds
+
             function onLoad() {
                 alert("add DEVICE ready events");
                 document.addEventListener("deviceready", onDeviceReadyFalse, false);
@@ -80,7 +87,7 @@
                 initAngularApp();
             }
 
-    </script>
+        </script>
 
 
         <!--Creates a JavaScript object that mimics HTML5 MediaElement API
@@ -91,7 +98,7 @@
 
 </head>
     
-    <body onload="onLoad()">
+    <body>
         
 
         <div id="slideView" ng-view ng-class="slideDir" > </div>
