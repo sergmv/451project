@@ -54,16 +54,22 @@
         
         <script>
             function onLoad() {
-                document.addEventListener("deviceready", onDeviceReady, false);
-                document.addEventListener("deviceready", onDeviceReady, true);
+                alert("add DEVICE ready events");
+                document.addEventListener("deviceready", onDeviceReadyFalse, false);
+                document.addEventListener("deviceready", onDeviceReadyTrue, true);
             }
 
             // device APIs are available
             //
-            function onDeviceReady() {
-                alert("DEVICE ready");
+            function onDeviceReadyFalse() {
+                alert("DEVICE ready false");
+                angular.bootstrap($('body'), ['comix']);
             }
 
+            function onDeviceReadyTrue() {
+                alert("DEVICE ready true");
+                angular.bootstrap($('body'), ['comix']);
+            }
 
     </script>
 
