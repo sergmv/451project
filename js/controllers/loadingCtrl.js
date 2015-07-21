@@ -38,7 +38,7 @@
                             function onDeviceReady() { 
                                 $("#loading-id").append("<div class='log-info'>" + "onDeviceReady " + " </div>");
                                 
-//                                  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null);
+                                  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null);
                             }
                             
                             function onRequestFileSystemSuccess(fileSystem) {
