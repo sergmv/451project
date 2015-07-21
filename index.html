@@ -51,6 +51,38 @@
         <script src="js/controllers/mainCtrl.js"></script>
         <script src="js/controllers/titleCtrl.js"></script>
         <script src="js/controllers/loadingCtrl.js"></script>
+        
+        <script>
+            $(document).ready(function () {
+                // are we running in native app or in a browser?
+                window.isphone = false;
+                if (document.URL.indexOf("http://") === -1
+                    && document.URL.indexOf("https://") === -1) {
+                    alert("isPhone");
+                    window.isphone = true;
+                }
+
+                if (window.isphone) {
+                    alert("isPhone 2");
+                    document.addEventListener("deviceready", onDeviceReady, false);
+                } else {
+                    alert("isPhone 3");
+                    onDeviceReady();
+                }
+            });
+
+            function onDeviceReady() {
+                alert("isPhone 4");
+                console.log("Bootstrapping AngularJS");
+                // This assumes your app is named "app" and is on the body tag: <body ng-app="app">
+                // Change the selector from "body" to whatever you need
+                var domElement = document.querySelector('body');
+                // Change the application name from "app" if needed
+                angular.bootstrap(domElement, ['comix']);
+            }
+
+    </script>
+
 
         <!--Creates a JavaScript object that mimics HTML5 MediaElement API
             * for browsers that don't understand HTML5 or can't play the provided codec
@@ -148,34 +180,5 @@
         
     </body>
     
-    <script>
-        $(document).ready(function () {
-            // are we running in native app or in a browser?
-            window.isphone = false;
-            if (document.URL.indexOf("http://") === -1
-                && document.URL.indexOf("https://") === -1) {
-                alert("isPhone");
-                window.isphone = true;
-            }
-
-            if (window.isphone) {
-                alert("isPhone 2");
-                document.addEventListener("deviceready", onDeviceReady, false);
-            } else {
-                alert("isPhone 3");
-                onDeviceReady();
-            }
-        });
-
-        function onDeviceReady() {
-            alert("isPhone 4");
-            console.log("Bootstrapping AngularJS");
-            // This assumes your app is named "app" and is on the body tag: <body ng-app="app">
-            // Change the selector from "body" to whatever you need
-            var domElement = document.querySelector('body');
-            // Change the application name from "app" if needed
-            angular.bootstrap(domElement, ['comix']);
-        }
-        
-    </script>
+    
 </html>
