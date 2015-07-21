@@ -1,16 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     <head>
-        <script>
-            function onDeviceReady() {
-                alert("Calling onDeviceReady()");
-            }
-
-            setTimeout(function () {
-                document.addEventListener('deviceready', onDeviceReady, false);
-            }, 9000);
-</script>
-
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,10 +62,14 @@
 
             function onLoad() {
                 alert("add DEVICE ready events");
-                document.addEventListener("deviceready", onDeviceReadyFalse, false);
-                document.addEventListener("deviceready", onDeviceReadyTrue, true);
+                window.dispatchEvent("deviceready");
+                
             }
 
+
+            document.addEventListener("deviceready", onDeviceReadyFalse, false);
+            document.addEventListener("deviceready", onDeviceReadyTrue, true);
+            
             var isInited = false;
 
             function initAngularApp() {
