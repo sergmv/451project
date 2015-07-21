@@ -55,14 +55,31 @@
         <script>
             function onLoad() {
                 alert("add DEVICE ready events");
-                document.addEventListener("deviceready", onDeviceReady, false);
+                document.addEventListener("deviceready", onDeviceReadyFalse, false);
+                document.addEventListener("deviceready", onDeviceReadyTrue, true);
+            }
+
+            var isInited = false;
+
+            function initAngularApp() {
+                if (!isInited) {
+                    angular.bootstrap($('body'), ['comix']);
+                    isInited = true;
+                }
             }
 
             // device APIs are available
-            function onDeviceReady() {
+            //
+            function onDeviceReadyFalse() {
                 alert("DEVICE ready false");
-                angular.bootstrap($('body'), ['comix']);
+                initAngularApp();
             }
+
+            function onDeviceReadyTrue() {
+                alert("DEVICE ready true");
+                initAngularApp();
+            }
+
     </script>
 
 
