@@ -52,7 +52,7 @@
         <script src="js/controllers/titleCtrl.js"></script>
         <script src="js/controllers/loadingCtrl.js"></script>
         
-        <script>
+       <!-- <script>
             $(document).ready(function () {
                 // are we running in native app or in a browser?
                 window.isphone = false;
@@ -81,7 +81,7 @@
                 angular.bootstrap(domElement, ['comix']);
             }
 
-    </script>
+    </script>-->
 
 
         <!--Creates a JavaScript object that mimics HTML5 MediaElement API
@@ -92,7 +92,7 @@
 
 </head>
     
-    <body>
+    <body ng-app="comix">
         
 
         <div id="slideView" ng-view ng-class="slideDir" > </div>
