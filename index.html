@@ -53,39 +53,17 @@
         <script src="js/controllers/loadingCtrl.js"></script>
         
         <script>
-            var CordovaInit = function () {
+            function onLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+                document.addEventListener("deviceready", onDeviceReady, true);
+            }
 
-                var onDeviceReady = function () {
-                    alert('Cordova found, wating for device. 10');
-                    receivedEvent('deviceready');
-                };
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                alert("DEVICE ready");
+            }
 
-                var receivedEvent = function (event) {
-                    alert('Cordova found, wating for device.8 ');
-                    console.log('Start event received, bootstrapping application setup.');
-                    angular.bootstrap($('body'), ['comix']);
-                };
-
-                this.bindEvents = function () {
-                    alert('Cordova found, wating for device. 9');
-                    document.addEventListener('deviceready', onDeviceReady, true);
-                };
-
-                //If cordova is present, wait for it to initialize, otherwise just try to
-                //bootstrap the application.
-                if (window.cordova !== undefined) {
-                    alert('Cordova found, wating for device.');
-                    this.bindEvents();
-                } else {
-                    alert('Cordova not found, booting application');
-                    receivedEvent('manual');
-                }
-            };
-
-            $(function () {
-                alert('Bootstrapping!');
-                new CordovaInit();
-            });
 
     </script>
 
@@ -98,7 +76,7 @@
 
 </head>
     
-    <body>
+    <body onload="onLoad()">
         
 
         <div id="slideView" ng-view ng-class="slideDir" > </div>
