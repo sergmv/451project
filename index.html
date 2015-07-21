@@ -159,14 +159,17 @@
             angular.bootstrap(domElement, ['comix']);
         }
 
-        // This is my preferred Cordova detection method, as it doesn't require updating.
-        if (document.URL.indexOf('http://') === -1
-                && document.URL.indexOf('https://') === -1) {
-            console.log("URL: Running in Cordova/PhoneGap");
-            document.addEventListener("deviceready", bootstrapAngular, false);
-        } else {
-            console.log("URL: Running in browser");
-            bootstrapAngular();
-        }
+        $(document).ready(function () {
+            // This is my preferred Cordova detection method, as it doesn't require updating.
+            if (document.URL.indexOf('http://') === -1
+                    && document.URL.indexOf('https://') === -1) {
+                console.log("URL: Running in Cordova/PhoneGap");
+                document.addEventListener("deviceready", bootstrapAngular, false);
+            } else {
+                console.log("URL: Running in browser");
+                bootstrapAngular();
+            }
+        });
+        
     </script>
 </html>
